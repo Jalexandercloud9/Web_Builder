@@ -497,7 +497,7 @@ export default function App() {
 
       {/* ── HERO ────────────────────────────────────────────────────────── */}
       <section id="hero" style={{
-        minHeight: "100vh",
+        minHeight: "60vh",
         position: "relative",
         overflow: "hidden",
         display: "flex",
@@ -531,22 +531,10 @@ export default function App() {
         <div style={{
           position: "relative", zIndex: 1,
           maxWidth: 1200, margin: "0 auto",
-          padding: "120px 32px 80px",
+          padding: "100px 32px 60px",
           width: "100%",
         }}>
           <div style={{ maxWidth: 580 }}>
-            {/* Badge pill */}
-            <div style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              background: "rgba(201,168,76,0.12)", border: "1px solid rgba(201,168,76,0.35)",
-              borderRadius: 50, padding: "6px 16px", marginBottom: 28,
-            }}>
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: tokens.accent, display: "inline-block", flexShrink: 0 }} />
-              <span style={{ color: tokens.accent, fontSize: 11, fontWeight: 700, fontFamily: "sans-serif", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>
-                CUSTOM WEBSITES FOR SMALL BUSINESSES
-              </span>
-            </div>
-
             <h1 style={{
               fontSize: "clamp(2.6rem, 5vw, 4rem)", fontWeight: 800,
               color: "#FFFFFF", lineHeight: 1.1, marginBottom: 22,
