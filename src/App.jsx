@@ -44,7 +44,7 @@ const portfolioStyles = [
     },
     realSite: "Alexander Insurance Group",
     tag: "Real Client",
-    screenshot: "screenshots/alexander-insurance.png",
+    screenshot: "jalexandercloud9.github.io_Alexander_Insurance_(iPhone 12 Pro).png",
   },
   {
     id: "warm",
@@ -67,7 +67,7 @@ const portfolioStyles = [
     },
     realSite: "Toys for Talking",
     tag: "Real Client",
-    screenshot: "screenshots/toys-for-talking.png",
+    screenshot: "toysfortalkingslp.com_(iPhone 12 Pro).png",
   },
   {
     id: "personal",
@@ -90,7 +90,7 @@ const portfolioStyles = [
     },
     realSite: "Lionheart & Soul",
     tag: "Real Client",
-    screenshot: "screenshots/lionheart-soul.png",
+    screenshot: "lionheartandsoulbymike.com_(iPhone 12 Pro).png",
   },
   {
     id: "storefront",
@@ -278,9 +278,9 @@ function PortfolioCard({ style, selected, onSelect }) {
         <div style={{ height: "100%", borderRadius: 8, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.15)" }}>
           {style.screenshot ? (
             <img
-              src={`${import.meta.env.BASE_URL}${style.screenshot}`}
+              src={encodeURI(`${import.meta.env.BASE_URL}${style.screenshot}`)}
               alt={style.label}
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center" }}
+              className="screenshot-scroll"
             />
           ) : (
             <SitePreview style={style} />

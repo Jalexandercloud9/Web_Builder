@@ -18,3 +18,15 @@ h1, h2, h3, h4, h5, h6, p {
 button {
   font-family: inherit;
 }
+
+@keyframes scrollPreview {
+  0%, 10%  { transform: translateY(0); }
+  90%, 100% { transform: translateY(calc(-100% + 176px)); }
+}
+
+.screenshot-scroll {
+  width: 100%;
+  height: auto;
+  display: block;
+  animation: scrollPreview 14s ease-in-out infinite alternate;
+}
