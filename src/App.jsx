@@ -450,10 +450,9 @@ export default function App() {
       {/* ── NAVBAR ─────────────────────────────────────────────────────── */}
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        background: scrolled ? "rgba(245,244,240,0.97)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? `1px solid ${tokens.border}` : "none",
-        transition: "all 0.3s ease",
+        background: "#FFFFFF",
+        borderBottom: `1px solid ${tokens.border}`,
+        boxShadow: "0 1px 4px rgba(0,0,0,0.06)",
         padding: "0 32px",
       }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
@@ -463,11 +462,11 @@ export default function App() {
               background: tokens.accent,
               display: "flex", alignItems: "center", justifyContent: "center",
             }}>
-              <span style={{ color: "#1a0a00", fontSize: 16, fontWeight: 900, fontFamily: "'Playfair Display', Georgia, serif" }}>J</span>
+              <span style={{ color: "#FFFFFF", fontSize: 16, fontWeight: 900, fontFamily: "'Playfair Display', Georgia, serif" }}>J</span>
             </div>
             <div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: scrolled ? tokens.primary : "#FFFFFF", lineHeight: 1.1, fontFamily: "'Playfair Display', Georgia, serif" }}>Web Studio</div>
-              <div style={{ fontSize: 10, color: scrolled ? tokens.mid : "rgba(255,255,255,0.65)", letterSpacing: "0.06em", fontFamily: "sans-serif", textTransform: "uppercase" }}>by Justin</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: tokens.primary, lineHeight: 1.1, fontFamily: "'Playfair Display', Georgia, serif" }}>Web Studio</div>
+              <div style={{ fontSize: 10, color: tokens.mid, letterSpacing: "0.06em", fontFamily: "sans-serif", textTransform: "uppercase" }}>by Justin</div>
             </div>
           </div>
 
@@ -476,9 +475,8 @@ export default function App() {
               <button key={id} onClick={() => scrollTo(id)} style={{
                 background: "none", border: "none", cursor: "pointer",
                 fontSize: 13, fontWeight: 600,
-                color: scrolled ? tokens.mid : "rgba(255,255,255,0.85)",
+                color: tokens.mid,
                 fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: "0.01em",
-                transition: "color 0.3s ease",
               }}>
                 {label}
               </button>
@@ -486,7 +484,7 @@ export default function App() {
             <button onClick={() => scrollTo("portfolio")} style={{
               background: tokens.accent, border: "none", borderRadius: 8,
               padding: "9px 20px", fontSize: 13, fontWeight: 800,
-              color: "#1a0a00", cursor: "pointer", letterSpacing: "0.01em",
+              color: "#FFFFFF", cursor: "pointer", letterSpacing: "0.01em",
               fontFamily: "sans-serif",
             }}>
               Get Started →
@@ -515,10 +513,11 @@ export default function App() {
         <div style={{
           position: "absolute", inset: 0,
           background: `linear-gradient(to right,
-            rgba(18,40,64,0.92) 0%,
-            rgba(27,58,92,0.85) 40%,
-            rgba(27,58,92,0.60) 65%,
-            rgba(18,40,64,0.25) 100%)`,
+            rgba(18,40,64,0.93) 0%,
+            rgba(18,40,64,0.88) 35%,
+            rgba(27,58,92,0.55) 58%,
+            rgba(18,40,64,0.08) 80%,
+            transparent 100%)`,
         }} />
 
         {/* Subtle bottom vignette */}
@@ -531,7 +530,7 @@ export default function App() {
         <div style={{
           position: "relative", zIndex: 1,
           maxWidth: 1200, margin: "0 auto",
-          padding: "100px 32px 60px",
+          padding: "64px 32px 64px",
           width: "100%",
         }}>
           <div style={{ maxWidth: 580 }}>
@@ -607,7 +606,7 @@ export default function App() {
               { n: "03", title: "Share Your Vision", desc: "Fill out the intake form, upload your logo and photos, describe your goals." },
               { n: "04", title: "Go Live", desc: "Get a preview mockup, then receive your custom site on your own domain." },
             ].map((step) => (
-              <div key={step.n} style={{ padding: "28px 24px", borderRadius: 14, background: tokens.surface, border: `1px solid ${tokens.border}` }}>
+              <div key={step.n} style={{ padding: "28px 24px", borderRadius: 14, background: "#FFFFFF", border: `1px solid ${tokens.border}` }}>
                 <div style={{ fontSize: 32, fontWeight: 900, color: tokens.accent, lineHeight: 1, marginBottom: 14, fontFamily: "'Playfair Display', Georgia, serif" }}>
                   {step.n}
                 </div>
@@ -624,7 +623,7 @@ export default function App() {
       </section>
 
       {/* ── PORTFOLIO ────────────────────────────────────────────────────── */}
-      <section id="portfolio" style={{ padding: "80px 32px", background: tokens.surface }}>
+      <section id="portfolio" style={{ padding: "80px 32px", background: "#F8F9FA" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 52 }}>
             <p style={{ fontSize: 11, fontWeight: 700, color: tokens.accent, letterSpacing: "0.12em", textTransform: "uppercase", fontFamily: "sans-serif", marginBottom: 10 }}>
@@ -718,7 +717,7 @@ export default function App() {
       </section>
 
       {/* ── ABOUT ────────────────────────────────────────────────────────── */}
-      <section id="about" style={{ padding: "80px 32px", background: tokens.surface }}>
+      <section id="about" style={{ padding: "80px 32px", background: "#F8F9FA" }}>
         <div style={{ maxWidth: 960, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
           <div>
             <p style={{ fontSize: 11, fontWeight: 700, color: tokens.accent, letterSpacing: "0.12em", textTransform: "uppercase", fontFamily: "sans-serif", marginBottom: 14 }}>
