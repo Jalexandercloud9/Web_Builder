@@ -68,6 +68,7 @@ const portfolioStyles = [
     realSite: "Toys for Talking",
     tag: "Real Client",
     screenshot: "toysfortalkingslp.com_(iPhone 12 Pro).png",
+    previewOffset: 110,
   },
   {
     id: "personal",
@@ -91,6 +92,7 @@ const portfolioStyles = [
     realSite: "Lionheart & Soul",
     tag: "Real Client",
     screenshot: "lionheartandsoulbymike.com_(iPhone 12 Pro).png",
+    previewOffset: 110,
   },
   {
     id: "storefront",
@@ -295,6 +297,7 @@ function PortfolioCard({ style, selected, onSelect }) {
                 src={encodeURI(`${import.meta.env.BASE_URL}${style.screenshot}`)}
                 alt={style.label}
                 className="screenshot-scroll"
+                style={style.previewOffset ? { "--scroll-start": `-${style.previewOffset}px` } : undefined}
               />
               <div className="tap-hint">
                 <span style={{ color: "#fff", fontSize: 11, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", background: "rgba(0,0,0,0.55)", padding: "5px 14px", borderRadius: 20 }}>

@@ -20,7 +20,7 @@ button {
 }
 
 @keyframes scrollPreview {
-  0%, 5%    { transform: translateY(0); }
+  0%, 5%    { transform: translateY(var(--scroll-start, 0px)); }
   95%, 100% { transform: translateY(calc(-100% + 176px)); }
 }
 
@@ -28,7 +28,7 @@ button {
   width: 100%;
   height: auto;
   display: block;
-  animation: scrollPreview 30s ease-in-out infinite alternate;
+  animation: scrollPreview 14s ease-in-out infinite alternate;
   animation-play-state: paused;
 }
 
