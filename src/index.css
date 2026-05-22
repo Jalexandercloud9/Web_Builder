@@ -21,7 +21,7 @@ button {
 
 @keyframes scrollPreview {
   0%, 5%    { transform: translateY(var(--scroll-start, 0px)); }
-  95%, 100% { transform: translateY(calc(-100% + 176px)); }
+  95%, 100% { transform: translateY(calc(-100% + 236px)); }
 }
 
 .screenshot-scroll {

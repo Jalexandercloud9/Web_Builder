@@ -285,7 +285,7 @@ function PortfolioCard({ style, selected, onSelect }) {
         boxShadow: hovered ? "0 16px 40px rgba(0,0,0,0.10)" : selected ? `0 0 0 4px ${style.accent}22` : "0 2px 8px rgba(0,0,0,0.05)",
       }}
     >
-      <div style={{ height: 200, padding: 12, background: "#F0EDE8", position: "relative" }}>
+      <div style={{ height: 260, padding: 12, background: "#F0EDE8", position: "relative" }}>
         <div
           className={`screenshot-wrap${previewActive ? " preview-active" : ""}`}
           style={{ height: "100%", borderRadius: 8, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.15)", position: "relative" }}
