@@ -309,22 +309,23 @@ function PortfolioCard({ style, selected, onSelect }) {
             <SitePreview style={style} />
           )}
         </div>
-        <div style={{
-          position: "absolute", top: 20, right: 20,
-          background: style.tag === "Real Client" ? "#10B981" : "#6366F1",
-          color: "#fff", fontSize: 9, fontWeight: 700,
-          padding: "3px 8px", borderRadius: 50, letterSpacing: "0.05em",
-          textTransform: "uppercase",
-        }}>
-          {style.tag}
-        </div>
       </div>
 
       <div style={{ padding: "16px 20px 20px" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-          <h3 style={{ margin: 0, fontSize: 15, fontWeight: 700, color: tokens.primary, fontFamily: "'Playfair Display', Georgia, serif" }}>
-            {style.label}
-          </h3>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <h3 style={{ margin: 0, fontSize: 15, fontWeight: 700, color: tokens.primary, fontFamily: "'Playfair Display', Georgia, serif" }}>
+              {style.label}
+            </h3>
+            <span style={{
+              background: style.tag === "Real Client" ? "#10B98120" : "#6366F120",
+              color: style.tag === "Real Client" ? "#10B981" : "#6366F1",
+              fontSize: 9, fontWeight: 700, padding: "2px 8px", borderRadius: 50,
+              letterSpacing: "0.05em", textTransform: "uppercase", whiteSpace: "nowrap",
+            }}>
+              {style.tag}
+            </span>
+          </div>
           <span style={{
             background: style.tierColor + "18", color: style.tierColor,
             fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 50,
