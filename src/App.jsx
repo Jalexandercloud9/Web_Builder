@@ -475,8 +475,10 @@ export default function App() {
             {[["Work", "portfolio"], ["Pricing", "pricing"], ["About", "about"], ["Contact", "contact"]].map(([label, id]) => (
               <button key={id} onClick={() => scrollTo(id)} style={{
                 background: "none", border: "none", cursor: "pointer",
-                fontSize: 13, fontWeight: 600, color: tokens.mid,
+                fontSize: 13, fontWeight: 600,
+                color: scrolled ? tokens.mid : "rgba(255,255,255,0.85)",
                 fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: "0.01em",
+                transition: "color 0.3s ease",
               }}>
                 {label}
               </button>
@@ -496,77 +498,105 @@ export default function App() {
       {/* ── HERO ────────────────────────────────────────────────────────── */}
       <section id="hero" style={{
         minHeight: "100vh",
-        background: `linear-gradient(160deg, ${tokens.primaryDark} 0%, ${tokens.primary} 55%, #1E4266 100%)`,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        textAlign: "center", padding: "100px 32px 60px",
-        position: "relative", overflow: "hidden",
+        position: "relative",
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
       }}>
-        {[
-          { size: 500, x: -120, y: -120, opacity: 0.06 },
-          { size: 300, x: "70%", y: "60%", opacity: 0.05 },
-          { size: 180, x: "15%", y: "70%", opacity: 0.07 },
-        ].map((c, i) => (
-          <div key={i} style={{
-            position: "absolute", width: c.size, height: c.size, borderRadius: "50%",
-            border: `1px solid rgba(201,168,76,${c.opacity * 5})`,
-            left: c.x, top: c.y, pointerEvents: "none",
-          }} />
-        ))}
+        {/* Background photo */}
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage: "url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1600&q=85')",
+          backgroundSize: "cover",
+          backgroundPosition: "center right",
+        }} />
 
-        <div style={{ maxWidth: 720, position: "relative", zIndex: 1 }}>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: 8,
-            background: "rgba(201,168,76,0.12)", border: "1px solid rgba(201,168,76,0.35)",
-            borderRadius: 50, padding: "6px 16px", marginBottom: 32,
-          }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: tokens.accent, display: "inline-block" }} />
-            <span style={{ color: tokens.accent, fontSize: 12, fontWeight: 600, fontFamily: "sans-serif", letterSpacing: "0.06em" }}>
-              CUSTOM WEBSITES FOR SMALL BUSINESSES
-            </span>
-          </div>
+        {/* Gradient overlay: solid navy left → transparent right */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: `linear-gradient(to right,
+            ${tokens.primaryDark} 0%,
+            ${tokens.primary} 38%,
+            rgba(27,58,92,0.82) 58%,
+            rgba(27,58,92,0.35) 78%,
+            rgba(18,40,64,0.08) 100%)`,
+        }} />
 
-          <h1 style={{
-            fontSize: "clamp(2.6rem, 6vw, 4.2rem)", fontWeight: 800,
-            color: "#FFFFFF", lineHeight: 1.08, marginBottom: 20,
-            letterSpacing: "-0.01em", fontFamily: "'Playfair Display', Georgia, serif",
-          }}>
-            A website that works as hard{" "}
-            <span style={{ color: tokens.accent }}>as you do.</span>
-          </h1>
+        {/* Subtle bottom vignette */}
+        <div style={{
+          position: "absolute", bottom: 0, left: 0, right: 0, height: 160,
+          background: "linear-gradient(to top, rgba(18,40,64,0.5) 0%, transparent 100%)",
+        }} />
 
-          <p style={{
-            fontSize: 17, color: "rgba(255,255,255,0.65)", lineHeight: 1.65,
-            marginBottom: 40, maxWidth: 540, margin: "0 auto 40px",
-            fontFamily: "sans-serif", fontWeight: 400,
-          }}>
-            Handcrafted websites with your brand, your domain, and your voice —
-            delivered fast, priced honestly, no agency overhead.
-          </p>
-
-          <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-            <button onClick={() => scrollTo("portfolio")} style={{
-              background: tokens.accent, border: "none", borderRadius: 10,
-              padding: "14px 32px", fontSize: 15, fontWeight: 800,
-              color: "#1a0a00", cursor: "pointer", fontFamily: "sans-serif",
+        {/* Content — left-aligned */}
+        <div style={{
+          position: "relative", zIndex: 1,
+          maxWidth: 1200, margin: "0 auto",
+          padding: "120px 32px 80px",
+          width: "100%",
+        }}>
+          <div style={{ maxWidth: 580 }}>
+            {/* Badge pill */}
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              background: "rgba(201,168,76,0.12)", border: "1px solid rgba(201,168,76,0.35)",
+              borderRadius: 50, padding: "6px 16px", marginBottom: 28,
             }}>
-              Browse Styles →
-            </button>
-            <button onClick={() => scrollTo("pricing")} style={{
-              background: "transparent", border: "2px solid rgba(255,255,255,0.3)",
-              borderRadius: 10, padding: "14px 32px", fontSize: 15, fontWeight: 700,
-              color: "rgba(255,255,255,0.85)", cursor: "pointer", fontFamily: "sans-serif",
-            }}>
-              See Pricing
-            </button>
-          </div>
+              <span style={{ width: 6, height: 6, borderRadius: "50%", background: tokens.accent, display: "inline-block", flexShrink: 0 }} />
+              <span style={{ color: tokens.accent, fontSize: 11, fontWeight: 700, fontFamily: "sans-serif", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>
+                CUSTOM WEBSITES FOR SMALL BUSINESSES
+              </span>
+            </div>
 
-          <div style={{ marginTop: 52, display: "flex", gap: 32, justifyContent: "center", flexWrap: "wrap" }}>
-            {[["6", "Site Styles"], ["48hr", "Avg Turnaround"], ["100%", "Custom Code"]].map(([num, label]) => (
-              <div key={label} style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 26, fontWeight: 900, color: tokens.accent, fontFamily: "'Playfair Display', Georgia, serif" }}>{num}</div>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)", fontFamily: "sans-serif", letterSpacing: "0.06em" }}>{label}</div>
-              </div>
-            ))}
+            <h1 style={{
+              fontSize: "clamp(2.6rem, 5vw, 4rem)", fontWeight: 800,
+              color: "#FFFFFF", lineHeight: 1.1, marginBottom: 22,
+              letterSpacing: "-0.02em", fontFamily: "'Playfair Display', Georgia, serif",
+            }}>
+              A website that works<br />
+              as hard{" "}
+              <span style={{ color: tokens.accent }}>as you do.</span>
+            </h1>
+
+            <p style={{
+              fontSize: 17, color: "rgba(255,255,255,0.7)", lineHeight: 1.7,
+              marginBottom: 40, fontFamily: "sans-serif", fontWeight: 400,
+              maxWidth: 480,
+            }}>
+              Handcrafted websites with your brand, your domain, and your voice —
+              delivered fast, priced honestly, no agency overhead.
+            </p>
+
+            <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+              <button onClick={() => scrollTo("portfolio")} style={{
+                background: tokens.accent, border: "none", borderRadius: 10,
+                padding: "14px 32px", fontSize: 15, fontWeight: 800,
+                color: "#1a0a00", cursor: "pointer", fontFamily: "sans-serif",
+                boxShadow: "0 4px 20px rgba(201,168,76,0.35)",
+              }}>
+                Browse Styles →
+              </button>
+              <button onClick={() => scrollTo("pricing")} style={{
+                background: "transparent", border: "2px solid rgba(255,255,255,0.35)",
+                borderRadius: 10, padding: "14px 32px", fontSize: 15, fontWeight: 700,
+                color: "rgba(255,255,255,0.88)", cursor: "pointer", fontFamily: "sans-serif",
+              }}>
+                See Pricing
+              </button>
+            </div>
+
+            {/* Divider */}
+            <div style={{ width: 48, height: 1, background: "rgba(201,168,76,0.4)", margin: "44px 0 36px" }} />
+
+            {/* Stats row */}
+            <div style={{ display: "flex", gap: 40, flexWrap: "wrap" }}>
+              {[["6", "Site Styles"], ["48hr", "Avg Turnaround"], ["100%", "Custom Code"]].map(([num, label]) => (
+                <div key={label}>
+                  <div style={{ fontSize: 28, fontWeight: 900, color: tokens.accent, fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1 }}>{num}</div>
+                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", fontFamily: "sans-serif", letterSpacing: "0.07em", marginTop: 4, textTransform: "uppercase" }}>{label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
