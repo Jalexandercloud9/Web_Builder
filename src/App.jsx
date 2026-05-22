@@ -68,7 +68,7 @@ const portfolioStyles = [
     realSite: "Toys for Talking",
     tag: "Real Client",
     screenshot: "toysfortalkingslp.com_(iPhone 12 Pro).png",
-    previewOffset: 110,
+    previewOffset: 115,
   },
   {
     id: "personal",
@@ -92,7 +92,7 @@ const portfolioStyles = [
     realSite: "Lionheart & Soul",
     tag: "Real Client",
     screenshot: "lionheartandsoulbymike.com_(iPhone 12 Pro).png",
-    previewOffset: 110,
+    previewOffset: 115,
   },
   {
     id: "storefront",

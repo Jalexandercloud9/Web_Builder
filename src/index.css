@@ -28,7 +28,7 @@ button {
   width: 100%;
   height: auto;
   display: block;
-  animation: scrollPreview 14s ease-in-out infinite alternate;
+  animation: scrollPreview 20s linear infinite alternate;
   animation-play-state: paused;
 }
 
