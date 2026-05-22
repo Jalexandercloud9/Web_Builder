@@ -506,7 +506,7 @@ export default function App() {
         {/* Background photo */}
         <div style={{
           position: "absolute", inset: 0,
-          backgroundImage: "url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1600&q=85')",
+          backgroundImage: `url('${import.meta.env.BASE_URL}hero-bg.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center right",
         }} />
@@ -515,11 +515,10 @@ export default function App() {
         <div style={{
           position: "absolute", inset: 0,
           background: `linear-gradient(to right,
-            ${tokens.primaryDark} 0%,
-            ${tokens.primary} 38%,
-            rgba(27,58,92,0.82) 58%,
-            rgba(27,58,92,0.35) 78%,
-            rgba(18,40,64,0.08) 100%)`,
+            rgba(18,40,64,0.92) 0%,
+            rgba(27,58,92,0.85) 40%,
+            rgba(27,58,92,0.60) 65%,
+            rgba(18,40,64,0.25) 100%)`,
         }} />
 
         {/* Subtle bottom vignette */}
