@@ -466,8 +466,8 @@ export default function App() {
               <span style={{ color: "#1a0a00", fontSize: 16, fontWeight: 900, fontFamily: "'Playfair Display', Georgia, serif" }}>J</span>
             </div>
             <div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: tokens.primary, lineHeight: 1.1, fontFamily: "'Playfair Display', Georgia, serif" }}>Web Studio</div>
-              <div style={{ fontSize: 10, color: tokens.mid, letterSpacing: "0.06em", fontFamily: "sans-serif", textTransform: "uppercase" }}>by Justin</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: scrolled ? tokens.primary : "#FFFFFF", lineHeight: 1.1, fontFamily: "'Playfair Display', Georgia, serif" }}>Web Studio</div>
+              <div style={{ fontSize: 10, color: scrolled ? tokens.mid : "rgba(255,255,255,0.65)", letterSpacing: "0.06em", fontFamily: "sans-serif", textTransform: "uppercase" }}>by Justin</div>
             </div>
           </div>
 
