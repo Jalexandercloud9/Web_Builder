@@ -44,6 +44,7 @@ const portfolioStyles = [
     },
     realSite: "Alexander Insurance Group",
     tag: "Real Client",
+    screenshot: "screenshots/alexander-insurance.png",
   },
   {
     id: "warm",
@@ -66,6 +67,7 @@ const portfolioStyles = [
     },
     realSite: "Toys for Talking",
     tag: "Real Client",
+    screenshot: "screenshots/toys-for-talking.png",
   },
   {
     id: "personal",
@@ -88,6 +90,7 @@ const portfolioStyles = [
     },
     realSite: "Lionheart & Soul",
     tag: "Real Client",
+    screenshot: "screenshots/lionheart-soul.png",
   },
   {
     id: "storefront",
@@ -192,84 +195,62 @@ const tiers = [
 // ─── MINI SITE PREVIEW ────────────────────────────────────────────────────────
 function SitePreview({ style }) {
   const p = style.preview;
+  const darkNav = style.id === "personal" || style.id === "agency";
+  const btnTextColor = style.id === "agency" ? "#000" : "#fff";
+
   return (
-    <div style={{
-      width: "100%", height: "100%", borderRadius: 12, overflow: "hidden",
-      background: p.sectionBg, fontFamily: "sans-serif", fontSize: 10,
-      display: "flex", flexDirection: "column",
-    }}>
+    <div style={{ width: "100%", height: "100%", borderRadius: 10, overflow: "hidden", display: "flex", flexDirection: "column" }}>
       {/* Navbar */}
       <div style={{
-        background: style.id === "personal" || style.id === "agency" ? p.bg : "#fff",
-        borderBottom: `1px solid ${style.id === "personal" || style.id === "agency" ? "rgba(255,255,255,0.1)" : "#e8e3dc"}`,
-        padding: "6px 12px",
+        background: darkNav ? p.bg : "#fff",
+        borderBottom: `1px solid ${darkNav ? "rgba(255,255,255,0.08)" : "#e8e8e8"}`,
+        padding: "5px 10px", flexShrink: 0,
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        flexShrink: 0,
       }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-          <div style={{ width: 20, height: 20, borderRadius: 4, background: p.accentColor, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <span style={{ color: style.id === "agency" ? "#000" : "#fff", fontSize: 8, fontWeight: 700 }}>J</span>
-          </div>
-          <div style={{ width: 40, height: 5, borderRadius: 2, background: style.id === "personal" || style.id === "agency" ? "rgba(255,255,255,0.7)" : p.bg, opacity: 0.7 }} />
+        <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+          <div style={{ width: 14, height: 14, borderRadius: 3, background: p.accentColor }} />
+          <div style={{ width: 30, height: 4, borderRadius: 2, background: darkNav ? "rgba(255,255,255,0.65)" : p.bg, opacity: 0.75 }} />
         </div>
-        <div style={{ display: "flex", gap: 6 }}>
-          {["Home", "Services", "About"].map(l => (
-            <div key={l} style={{ width: 20, height: 4, borderRadius: 1, background: style.id === "personal" || style.id === "agency" ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.2)" }} />
-          ))}
+        <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
+          {[1, 2, 3].map(i => <div key={i} style={{ width: 16, height: 3, borderRadius: 1, background: darkNav ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.18)" }} />)}
           <div style={{ background: p.accentColor, borderRadius: 3, padding: "2px 6px" }}>
-            <div style={{ width: 20, height: 4, borderRadius: 1, background: style.id === "agency" ? "#000" : "#fff", opacity: 0.9 }} />
+            <div style={{ width: 14, height: 3, borderRadius: 1, background: btnTextColor, opacity: 0.9 }} />
           </div>
         </div>
       </div>
 
-      {/* Hero */}
-      <div style={{
-        background: p.bg, padding: "16px 14px", flexShrink: 0,
-        position: "relative", overflow: "hidden",
-      }}>
-        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.15)" }} />
-        <div style={{ position: "relative", zIndex: 1 }}>
-          <div style={{ width: 40, height: 3, borderRadius: 1, background: p.accentColor, marginBottom: 5, opacity: 0.9 }} />
-          <div style={{ width: "80%", height: 7, borderRadius: 2, background: p.text, marginBottom: 4, opacity: 0.95 }} />
-          <div style={{ width: "60%", height: 4, borderRadius: 1, background: p.text, marginBottom: 8, opacity: 0.6 }} />
-          <div style={{ display: "flex", gap: 6 }}>
-            <div style={{ background: p.accentColor, borderRadius: 3, padding: "3px 10px" }}>
-              <div style={{ width: 28, height: 4, borderRadius: 1, background: style.id === "agency" ? "#000" : "#fff", opacity: 0.9 }} />
-            </div>
-            <div style={{ border: "1px solid rgba(255,255,255,0.5)", borderRadius: 3, padding: "3px 10px" }}>
-              <div style={{ width: 28, height: 4, borderRadius: 1, background: "#fff", opacity: 0.6 }} />
-            </div>
+      {/* Hero — dominant colour block */}
+      <div style={{ background: p.bg, flex: "0 0 52%", padding: "10px 10px 8px", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
+        <div style={{ width: "36%", height: 3, borderRadius: 1, background: p.accentColor, marginBottom: 5, opacity: 0.9 }} />
+        <div style={{ width: "88%", height: 7, borderRadius: 2, background: p.text, marginBottom: 3, opacity: 0.95 }} />
+        <div style={{ width: "65%", height: 7, borderRadius: 2, background: p.accentColor, marginBottom: 7, opacity: 0.85 }} />
+        <div style={{ width: "72%", height: 3, borderRadius: 1, background: p.text, marginBottom: 2, opacity: 0.5 }} />
+        <div style={{ width: "55%", height: 3, borderRadius: 1, background: p.text, marginBottom: 8, opacity: 0.4 }} />
+        <div style={{ display: "flex", gap: 5 }}>
+          <div style={{ background: p.accentColor, borderRadius: 3, padding: "3px 8px" }}>
+            <div style={{ width: 20, height: 3, borderRadius: 1, background: btnTextColor, opacity: 0.9 }} />
+          </div>
+          <div style={{ border: "1px solid rgba(255,255,255,0.45)", borderRadius: 3, padding: "3px 8px" }}>
+            <div style={{ width: 20, height: 3, borderRadius: 1, background: "#fff", opacity: 0.55 }} />
           </div>
         </div>
       </div>
 
-      {/* Services */}
-      <div style={{ background: p.sectionBg, padding: "10px 14px", flexShrink: 0 }}>
-        <div style={{ width: 50, height: 4, borderRadius: 1, background: p.accentColor, marginBottom: 3, opacity: 0.8 }} />
-        <div style={{ width: "55%", height: 6, borderRadius: 1, background: style.id === "personal" || style.id === "agency" ? p.cardText : "#1a1a1a", marginBottom: 8, opacity: 0.8 }} />
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 6 }}>
+      {/* Services strip */}
+      <div style={{ flex: 1, background: p.sectionBg, padding: "7px 10px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 5, height: "100%" }}>
           {[1, 2, 3].map(i => (
-            <div key={i} style={{
-              background: p.cardBg,
-              border: `1px solid ${style.id === "agency" ? "#2a2a2a" : "#e8e3dc"}`,
-              borderRadius: 6, padding: "8px 6px",
-            }}>
-              <div style={{ width: 14, height: 14, borderRadius: 3, background: p.accentColor, marginBottom: 4, opacity: 0.8 }} />
-              <div style={{ width: "80%", height: 4, borderRadius: 1, background: p.cardText, marginBottom: 3, opacity: 0.8 }} />
-              <div style={{ width: "100%", height: 3, borderRadius: 1, background: p.cardText, opacity: 0.3 }} />
-              <div style={{ width: "70%", height: 3, borderRadius: 1, background: p.cardText, marginTop: 2, opacity: 0.3 }} />
+            <div key={i} style={{ background: p.cardBg, border: `1px solid ${darkNav ? "#2a2a2a" : "#e5e5e5"}`, borderRadius: 4, padding: "5px 4px" }}>
+              <div style={{ width: 10, height: 10, borderRadius: 2, background: p.accentColor, marginBottom: 4, opacity: 0.8 }} />
+              <div style={{ width: "80%", height: 3, borderRadius: 1, background: p.cardText, opacity: 0.75, marginBottom: 3 }} />
+              <div style={{ width: "60%", height: 2, borderRadius: 1, background: p.cardText, opacity: 0.3 }} />
             </div>
           ))}
         </div>
       </div>
 
-      {/* Footer stub */}
-      <div style={{ flex: 1, background: style.id === "professional" ? "#1B3A5C" : p.bg, padding: "8px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ width: 30, height: 4, borderRadius: 1, background: "rgba(255,255,255,0.5)" }} />
-        <div style={{ display: "flex", gap: 4 }}>
-          {[1, 2, 3].map(i => <div key={i} style={{ width: 12, height: 12, borderRadius: "50%", background: "rgba(255,255,255,0.2)" }} />)}
-        </div>
-      </div>
+      {/* Footer */}
+      <div style={{ height: 13, background: p.bg, flexShrink: 0 }} />
     </div>
   );
 }
@@ -295,7 +276,15 @@ function PortfolioCard({ style, selected, onSelect }) {
     >
       <div style={{ height: 200, padding: 12, background: "#F0EDE8", position: "relative" }}>
         <div style={{ height: "100%", borderRadius: 8, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.15)" }}>
-          <SitePreview style={style} />
+          {style.screenshot ? (
+            <img
+              src={`${import.meta.env.BASE_URL}${style.screenshot}`}
+              alt={style.label}
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center" }}
+            />
+          ) : (
+            <SitePreview style={style} />
+          )}
         </div>
         <div style={{
           position: "absolute", top: 20, right: 20,
