@@ -2,16 +2,16 @@ import { useState, useEffect, useRef } from "react";
 
 // ─── DESIGN TOKENS ───────────────────────────────────────────────────────────
 const tokens = {
-  primary: "#1558C4",
-  primaryDark: "#0F46A0",
-  accent: "#1558C4",
-  accentDark: "#0F46A0",
-  accentLight: "#EBF2FF",
-  surface: "#F5F7FA",
+  primary: "#1B3A5C",
+  primaryDark: "#122840",
+  accent: "#C9A84C",
+  accentDark: "#B8933E",
+  accentLight: "#F7F2E8",
+  surface: "#F5F4F0",
   white: "#FFFFFF",
-  dark: "#1A1A1A",
-  mid: "#555555",
-  border: "#DDE1E8",
+  dark: "#1a1a1a",
+  mid: "#4a4a4a",
+  border: "#DDD9D0",
   cardBg: "#FFFFFF",
 };
 
@@ -371,7 +371,7 @@ function PricingCard({ tier }) {
       {tier.popular && (
         <div style={{
           position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)",
-          background: tokens.accent, color: "#FFFFFF",
+          background: tokens.accent, color: "#1a0a00",
           fontSize: 10, fontWeight: 800, padding: "4px 14px",
           borderRadius: 50, letterSpacing: "0.08em", textTransform: "uppercase",
           whiteSpace: "nowrap",
@@ -419,7 +419,7 @@ function PricingCard({ tier }) {
       <button style={{
         width: "100%", padding: "12px 0",
         background: tier.popular ? tokens.accent : "transparent",
-        color: tier.popular ? "#FFFFFF" : tier.accent,
+        color: tier.popular ? "#1a0a00" : tier.accent,
         border: `2px solid ${tier.popular ? tokens.accent : tier.accent}`,
         borderRadius: 10, fontSize: 14, fontWeight: 800, cursor: "pointer",
       }}>
@@ -463,7 +463,7 @@ export default function App() {
               background: tokens.accent,
               display: "flex", alignItems: "center", justifyContent: "center",
             }}>
-              <span style={{ color: "#FFFFFF", fontSize: 16, fontWeight: 900, fontFamily: "'Playfair Display', Georgia, serif" }}>J</span>
+              <span style={{ color: "#1a0a00", fontSize: 16, fontWeight: 900, fontFamily: "'Playfair Display', Georgia, serif" }}>J</span>
             </div>
             <div>
               <div style={{ fontSize: 15, fontWeight: 700, color: scrolled ? tokens.primary : "#FFFFFF", lineHeight: 1.1, fontFamily: "'Playfair Display', Georgia, serif" }}>Web Studio</div>
@@ -486,7 +486,7 @@ export default function App() {
             <button onClick={() => scrollTo("portfolio")} style={{
               background: tokens.accent, border: "none", borderRadius: 8,
               padding: "9px 20px", fontSize: 13, fontWeight: 800,
-              color: "#FFFFFF", cursor: "pointer", letterSpacing: "0.01em",
+              color: "#1a0a00", cursor: "pointer", letterSpacing: "0.01em",
               fontFamily: "sans-serif",
             }}>
               Get Started →
@@ -515,16 +515,16 @@ export default function App() {
         <div style={{
           position: "absolute", inset: 0,
           background: `linear-gradient(to right,
-            rgba(15,70,160,0.90) 0%,
-            rgba(21,88,196,0.82) 42%,
-            rgba(21,88,196,0.55) 65%,
-            rgba(15,70,160,0.18) 100%)`,
+            rgba(18,40,64,0.92) 0%,
+            rgba(27,58,92,0.85) 40%,
+            rgba(27,58,92,0.60) 65%,
+            rgba(18,40,64,0.25) 100%)`,
         }} />
 
         {/* Subtle bottom vignette */}
         <div style={{
           position: "absolute", bottom: 0, left: 0, right: 0, height: 160,
-          background: "linear-gradient(to top, rgba(15,70,160,0.45) 0%, transparent 100%)",
+          background: "linear-gradient(to top, rgba(18,40,64,0.5) 0%, transparent 100%)",
         }} />
 
         {/* Content — left-aligned */}
@@ -558,8 +558,8 @@ export default function App() {
               <button onClick={() => scrollTo("portfolio")} style={{
                 background: tokens.accent, border: "none", borderRadius: 10,
                 padding: "14px 32px", fontSize: 15, fontWeight: 800,
-                color: "#FFFFFF", cursor: "pointer", fontFamily: "sans-serif",
-                boxShadow: "0 4px 20px rgba(21,88,196,0.35)",
+                color: "#1a0a00", cursor: "pointer", fontFamily: "sans-serif",
+                boxShadow: "0 4px 20px rgba(201,168,76,0.35)",
               }}>
                 Browse Styles →
               </button>
@@ -663,7 +663,7 @@ export default function App() {
               <button onClick={() => scrollTo("contact")} style={{
                 background: tokens.accent, border: "none", borderRadius: 10,
                 padding: "12px 28px", fontSize: 14, fontWeight: 800,
-                color: "#FFFFFF", cursor: "pointer", fontFamily: "sans-serif",
+                color: "#1a0a00", cursor: "pointer", fontFamily: "sans-serif",
                 whiteSpace: "nowrap",
               }}>
                 Get Started with This Style →
@@ -751,7 +751,7 @@ export default function App() {
           <div style={{ position: "relative" }}>
             <div style={{
               width: "100%", aspectRatio: "4/5", borderRadius: 20,
-              background: `linear-gradient(160deg, #1558C4, #0F46A0)`,
+              background: `linear-gradient(160deg, ${tokens.primary}, ${tokens.primaryDark})`,
               display: "flex", alignItems: "center", justifyContent: "center",
               overflow: "hidden",
             }}>
@@ -765,7 +765,7 @@ export default function App() {
               background: tokens.accent, borderRadius: 12,
               padding: "14px 20px", boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
             }}>
-              <div style={{ fontSize: 24, fontWeight: 900, color: "#FFFFFF", fontFamily: "sans-serif", lineHeight: 1 }}>3+</div>
+              <div style={{ fontSize: 24, fontWeight: 900, color: "#1a0a00", fontFamily: "sans-serif", lineHeight: 1 }}>3+</div>
               <div style={{ fontSize: 10, color: "#5a3d00", fontFamily: "sans-serif", letterSpacing: "0.05em" }}>SITES LAUNCHED</div>
             </div>
           </div>
@@ -775,7 +775,7 @@ export default function App() {
       {/* ── CONTACT CTA ──────────────────────────────────────────────────── */}
       <section id="contact" style={{
         padding: "80px 32px",
-        background: `linear-gradient(160deg, #0F46A0 0%, #1558C4 100%)`,
+        background: `linear-gradient(160deg, ${tokens.primaryDark} 0%, ${tokens.primary} 100%)`,
         textAlign: "center",
       }}>
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
@@ -792,7 +792,7 @@ export default function App() {
             <button style={{
               background: tokens.accent, border: "none", borderRadius: 10,
               padding: "14px 36px", fontSize: 15, fontWeight: 800,
-              color: "#FFFFFF", cursor: "pointer", fontFamily: "sans-serif",
+              color: "#1a0a00", cursor: "pointer", fontFamily: "sans-serif",
             }}>
               Create Account →
             </button>
@@ -811,7 +811,7 @@ export default function App() {
       <footer style={{ background: tokens.dark, padding: "28px 32px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{ width: 28, height: 28, borderRadius: 6, background: tokens.accent, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <span style={{ color: "#FFFFFF", fontSize: 14, fontWeight: 900, fontFamily: "sans-serif" }}>J</span>
+            <span style={{ color: "#1a0a00", fontSize: 14, fontWeight: 900, fontFamily: "sans-serif" }}>J</span>
           </div>
           <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 12, fontFamily: "sans-serif" }}>© 2026 Web Studio by Justin</span>
         </div>
