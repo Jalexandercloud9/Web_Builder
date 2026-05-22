@@ -506,7 +506,7 @@ export default function App() {
         {/* Background photo */}
         <div style={{
           position: "absolute", inset: 0,
-          backgroundImage: `url('${import.meta.env.BASE_URL}hero-bg.jpg')`,
+          backgroundImage: `url('${import.meta.env.BASE_URL}ChatGPT%20Image%20May%2021%2C%202026%2C%2009_10_03%20PM.png')`,
           backgroundSize: "cover",
           backgroundPosition: "center right",
         }} />
