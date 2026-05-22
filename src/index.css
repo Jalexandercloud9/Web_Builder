@@ -20,13 +20,47 @@ button {
 }
 
 @keyframes scrollPreview {
-  0%, 10%  { transform: translateY(0); }
-  90%, 100% { transform: translateY(calc(-100% + 176px)); }
+  0%, 5%    { transform: translateY(0); }
+  95%, 100% { transform: translateY(calc(-100% + 176px)); }
 }
 
 .screenshot-scroll {
   width: 100%;
   height: auto;
   display: block;
-  animation: scrollPreview 14s ease-in-out infinite alternate;
+  animation: scrollPreview 30s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+
+/* Desktop: play on hover */
+@media (hover: hover) and (pointer: fine) {
+  .screenshot-wrap:hover .screenshot-scroll {
+    animation-play-state: running;
+  }
+}
+
+/* Mobile tap: play when active class applied via JS */
+.screenshot-wrap.preview-active .screenshot-scroll {
+  animation-play-state: running;
+}
+
+/* "Tap to preview" hint — touch devices only */
+.tap-hint {
+  display: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .tap-hint {
+    display: flex;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    border-radius: 8px;
+  }
+
+  .screenshot-wrap.preview-active .tap-hint {
+    display: none;
+  }
 }

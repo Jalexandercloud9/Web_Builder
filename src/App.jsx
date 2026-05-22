@@ -258,6 +258,15 @@ function SitePreview({ style }) {
 // ─── PORTFOLIO CARD ───────────────────────────────────────────────────────────
 function PortfolioCard({ style, selected, onSelect }) {
   const [hovered, setHovered] = useState(false);
+  const [previewActive, setPreviewActive] = useState(false);
+
+  const handlePreviewPointer = (e) => {
+    if (e.pointerType === "touch") {
+      e.stopPropagation();
+      e.preventDefault();
+      setPreviewActive(prev => !prev);
+    }
+  };
   return (
     <div
       onClick={() => onSelect(style)}
@@ -275,13 +284,24 @@ function PortfolioCard({ style, selected, onSelect }) {
       }}
     >
       <div style={{ height: 200, padding: 12, background: "#F0EDE8", position: "relative" }}>
-        <div style={{ height: "100%", borderRadius: 8, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.15)" }}>
+        <div
+          className={`screenshot-wrap${previewActive ? " preview-active" : ""}`}
+          style={{ height: "100%", borderRadius: 8, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.15)", position: "relative" }}
+          onPointerDown={style.screenshot ? handlePreviewPointer : undefined}
+        >
           {style.screenshot ? (
-            <img
-              src={encodeURI(`${import.meta.env.BASE_URL}${style.screenshot}`)}
-              alt={style.label}
-              className="screenshot-scroll"
-            />
+            <>
+              <img
+                src={encodeURI(`${import.meta.env.BASE_URL}${style.screenshot}`)}
+                alt={style.label}
+                className="screenshot-scroll"
+              />
+              <div className="tap-hint">
+                <span style={{ color: "#fff", fontSize: 11, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", background: "rgba(0,0,0,0.55)", padding: "5px 14px", borderRadius: 20 }}>
+                  Tap to view preview
+                </span>
+              </div>
+            </>
           ) : (
             <SitePreview style={style} />
           )}
