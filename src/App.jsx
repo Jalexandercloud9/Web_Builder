@@ -258,15 +258,14 @@ function SitePreview({ style }) {
 }
 
 // ─── PORTFOLIO CARD ───────────────────────────────────────────────────────────
-function PortfolioCard({ style, selected, onSelect }) {
+function PortfolioCard({ style, selected, onSelect, previewActive, onPreviewToggle }) {
   const [hovered, setHovered] = useState(false);
-  const [previewActive, setPreviewActive] = useState(false);
 
   const handlePreviewPointer = (e) => {
     if (e.pointerType === "touch") {
       e.stopPropagation();
       e.preventDefault();
-      setPreviewActive(prev => !prev);
+      onPreviewToggle(style.id);
     }
   };
 
@@ -456,6 +455,9 @@ function PricingCard({ tier }) {
 export default function App() {
   const [selectedStyle, setSelectedStyle] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activePreview, setActivePreview] = useState(null);
+
+  const handlePreviewToggle = (id) => setActivePreview(prev => prev === id ? null : id);
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -692,6 +694,8 @@ export default function App() {
                 style={style}
                 selected={selectedStyle?.id === style.id}
                 onSelect={setSelectedStyle}
+                previewActive={activePreview === style.id}
+                onPreviewToggle={handlePreviewToggle}
               />
             ))}
           </div>
