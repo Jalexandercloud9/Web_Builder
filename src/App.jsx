@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 // ─── DESIGN TOKENS ───────────────────────────────────────────────────────────
 const tokens = {
@@ -221,7 +221,7 @@ function SitePreview({ style }) {
         </div>
       </div>
 
-      {/* Hero — dominant colour block */}
+      {/* Hero */}
       <div style={{ background: p.bg, flex: "0 0 52%", padding: "10px 10px 8px", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
         <div style={{ width: "36%", height: 3, borderRadius: 1, background: p.accentColor, marginBottom: 5, opacity: 0.9 }} />
         <div style={{ width: "88%", height: 7, borderRadius: 2, background: p.text, marginBottom: 3, opacity: 0.95 }} />
@@ -269,11 +269,13 @@ function PortfolioCard({ style, selected, onSelect }) {
       setPreviewActive(prev => !prev);
     }
   };
+
   return (
     <div
       onClick={() => onSelect(style)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className="portfolio-card"
       style={{
         background: tokens.white,
         borderRadius: 16,
@@ -283,12 +285,74 @@ function PortfolioCard({ style, selected, onSelect }) {
         transition: "all 0.25s ease",
         transform: hovered ? "translateY(-4px)" : "none",
         boxShadow: hovered ? "0 16px 40px rgba(0,0,0,0.10)" : selected ? `0 0 0 4px ${style.accent}22` : "0 2px 8px rgba(0,0,0,0.05)",
+        minHeight: 200,
       }}
     >
-      <div style={{ height: 260, padding: 12, background: "#F0EDE8", position: "relative" }}>
+      {/* Left: text content */}
+      <div style={{ flex: 1, padding: "20px 24px", display: "flex", flexDirection: "column" }}>
+        {/* Header row */}
+        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 8, gap: 8 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+            <h3 style={{ margin: 0, fontSize: 15, fontWeight: 700, color: tokens.primary, fontFamily: "'Playfair Display', Georgia, serif" }}>
+              {style.label}
+            </h3>
+            <span style={{
+              background: style.tag === "Real Client" ? "#10B98120" : "#6366F120",
+              color: style.tag === "Real Client" ? "#10B981" : "#6366F1",
+              fontSize: 9, fontWeight: 700, padding: "2px 8px", borderRadius: 50,
+              letterSpacing: "0.05em", textTransform: "uppercase", whiteSpace: "nowrap",
+            }}>
+              {style.tag}
+            </span>
+          </div>
+          <span style={{
+            background: style.tierColor + "18", color: style.tierColor,
+            fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 50,
+            letterSpacing: "0.04em", whiteSpace: "nowrap", flexShrink: 0,
+          }}>
+            {style.tier}
+          </span>
+        </div>
+
+        {style.realSite && (
+          <p style={{ margin: "0 0 8px", fontSize: 11, color: "#10B981", fontWeight: 600 }}>
+            ✦ Based on {style.realSite}
+          </p>
+        )}
+
+        <p style={{ margin: "0 0 12px", fontSize: 12, color: tokens.mid, lineHeight: 1.5 }}>
+          {style.description}
+        </p>
+
+        <div style={{ flex: 1 }} />
+
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12, gap: 8, flexWrap: "wrap" }}>
+          <span style={{ fontSize: 11, color: tokens.mid }}>
+            <span style={{ fontWeight: 600, color: "#5C5C7A" }}>Best for:</span> {style.bestFor}
+          </span>
+          <span style={{ fontSize: 16, fontWeight: 800, color: tokens.primary, whiteSpace: "nowrap" }}>
+            ${style.price.toLocaleString()}
+          </span>
+        </div>
+
+        <button style={{
+          width: "100%",
+          background: selected ? style.accent : "transparent",
+          color: selected ? "#fff" : style.accent,
+          border: `2px solid ${style.accent}`,
+          borderRadius: 8, padding: "9px 0",
+          fontSize: 13, fontWeight: 700, cursor: "pointer",
+          transition: "all 0.2s ease",
+        }}>
+          {selected ? "✓ Selected" : "Choose This Style"}
+        </button>
+      </div>
+
+      {/* Right: preview */}
+      <div className="portfolio-preview">
         <div
           className={`screenshot-wrap${previewActive ? " preview-active" : ""}`}
-          style={{ height: "100%", borderRadius: 8, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.15)", position: "relative" }}
+          style={{ flex: 1, borderRadius: 8, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.15)", position: "relative" }}
           onPointerDown={style.screenshot ? handlePreviewPointer : undefined}
         >
           {style.screenshot ? (
@@ -310,62 +374,6 @@ function PortfolioCard({ style, selected, onSelect }) {
           )}
         </div>
       </div>
-
-      <div style={{ padding: "16px 20px 20px" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <h3 style={{ margin: 0, fontSize: 15, fontWeight: 700, color: tokens.primary, fontFamily: "'Playfair Display', Georgia, serif" }}>
-              {style.label}
-            </h3>
-            <span style={{
-              background: style.tag === "Real Client" ? "#10B98120" : "#6366F120",
-              color: style.tag === "Real Client" ? "#10B981" : "#6366F1",
-              fontSize: 9, fontWeight: 700, padding: "2px 8px", borderRadius: 50,
-              letterSpacing: "0.05em", textTransform: "uppercase", whiteSpace: "nowrap",
-            }}>
-              {style.tag}
-            </span>
-          </div>
-          <span style={{
-            background: style.tierColor + "18", color: style.tierColor,
-            fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 50,
-            letterSpacing: "0.04em",
-          }}>
-            {style.tier}
-          </span>
-        </div>
-
-        {style.realSite && (
-          <p style={{ margin: "0 0 6px", fontSize: 11, color: "#10B981", fontWeight: 600 }}>
-            ✦ Based on {style.realSite}
-          </p>
-        )}
-
-        <p style={{ margin: "0 0 10px", fontSize: 12, color: tokens.mid, lineHeight: 1.5 }}>
-          {style.description}
-        </p>
-
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <span style={{ fontSize: 11, color: tokens.mid }}>
-            <span style={{ fontWeight: 600, color: "#5C5C7A" }}>Best for:</span> {style.bestFor}
-          </span>
-          <span style={{ fontSize: 15, fontWeight: 800, color: tokens.primary }}>
-            ${style.price.toLocaleString()}
-          </span>
-        </div>
-
-        <button style={{
-          marginTop: 14, width: "100%",
-          background: selected ? style.accent : "transparent",
-          color: selected ? "#fff" : style.accent,
-          border: `2px solid ${style.accent}`,
-          borderRadius: 8, padding: "9px 0",
-          fontSize: 13, fontWeight: 700, cursor: "pointer",
-          transition: "all 0.2s ease",
-        }}>
-          {selected ? "✓ Selected" : "Choose This Style"}
-        </button>
-      </div>
     </div>
   );
 }
@@ -373,14 +381,16 @@ function PortfolioCard({ style, selected, onSelect }) {
 // ─── PRICING CARD ─────────────────────────────────────────────────────────────
 function PricingCard({ tier }) {
   return (
-    <div style={{
-      background: tier.popular ? tokens.primary : tokens.white,
-      border: tier.popular ? "none" : `1px solid ${tokens.border}`,
-      borderRadius: 16, padding: "28px 24px",
-      position: "relative",
-      boxShadow: tier.popular ? "0 20px 60px rgba(26,26,46,0.25)" : "0 2px 8px rgba(0,0,0,0.04)",
-      transform: tier.popular ? "scale(1.03)" : "none",
-    }}>
+    <div
+      className={tier.popular ? "pricing-popular" : ""}
+      style={{
+        background: tier.popular ? tokens.primary : tokens.white,
+        border: tier.popular ? "none" : `1px solid ${tokens.border}`,
+        borderRadius: 16, padding: "28px 24px",
+        position: "relative",
+        boxShadow: tier.popular ? undefined : "0 2px 8px rgba(0,0,0,0.04)",
+      }}
+    >
       {tier.popular && (
         <div style={{
           position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)",
@@ -445,17 +455,14 @@ function PricingCard({ tier }) {
 // ─── MAIN APP ─────────────────────────────────────────────────────────────────
 export default function App() {
   const [selectedStyle, setSelectedStyle] = useState(null);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMenuOpen(false);
   };
+
+  const navLinks = [["Work", "portfolio"], ["Pricing", "pricing"], ["About", "about"], ["Contact", "contact"]];
 
   return (
     <div style={{ fontFamily: "'Playfair Display', Georgia, 'Times New Roman', serif", background: tokens.surface, color: tokens.dark, minHeight: "100vh" }}>
@@ -466,9 +473,9 @@ export default function App() {
         background: "#FFFFFF",
         borderBottom: `1px solid ${tokens.border}`,
         boxShadow: "0 1px 4px rgba(0,0,0,0.06)",
-        padding: "0 32px",
       }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
+        <div className="nav-inner">
+          {/* Logo */}
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <div style={{
               width: 32, height: 32, borderRadius: 8,
@@ -483,12 +490,12 @@ export default function App() {
             </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
-            {[["Work", "portfolio"], ["Pricing", "pricing"], ["About", "about"], ["Contact", "contact"]].map(([label, id]) => (
+          {/* Desktop nav links */}
+          <div className="nav-links">
+            {navLinks.map(([label, id]) => (
               <button key={id} onClick={() => scrollTo(id)} style={{
                 background: "none", border: "none", cursor: "pointer",
-                fontSize: 13, fontWeight: 600,
-                color: tokens.mid,
+                fontSize: 13, fontWeight: 600, color: tokens.mid,
                 fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: "0.01em",
               }}>
                 {label}
@@ -503,6 +510,49 @@ export default function App() {
               Get Started →
             </button>
           </div>
+
+          {/* Hamburger — mobile only */}
+          <button
+            className="nav-hamburger"
+            onClick={() => setMenuOpen(prev => !prev)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? (
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <line x1="4" y1="4" x2="18" y2="18" stroke={tokens.primary} strokeWidth="2" strokeLinecap="round" />
+                <line x1="18" y1="4" x2="4" y2="18" stroke={tokens.primary} strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            ) : (
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <line x1="3" y1="6" x2="19" y2="6" stroke={tokens.primary} strokeWidth="2" strokeLinecap="round" />
+                <line x1="3" y1="11" x2="19" y2="11" stroke={tokens.primary} strokeWidth="2" strokeLinecap="round" />
+                <line x1="3" y1="16" x2="19" y2="16" stroke={tokens.primary} strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            )}
+          </button>
+        </div>
+
+        {/* Mobile dropdown menu */}
+        <div className={`nav-mobile${menuOpen ? " open" : ""}`}>
+          {navLinks.map(([label, id]) => (
+            <button key={id} onClick={() => scrollTo(id)} style={{
+              background: "none", border: "none", cursor: "pointer",
+              fontSize: 15, fontWeight: 600, color: tokens.primary,
+              fontFamily: "'Playfair Display', Georgia, serif",
+              padding: "10px 0", textAlign: "left", width: "100%",
+              borderBottom: `1px solid ${tokens.border}`,
+            }}>
+              {label}
+            </button>
+          ))}
+          <button onClick={() => scrollTo("portfolio")} style={{
+            marginTop: 12, width: "100%",
+            background: tokens.accent, border: "none", borderRadius: 8,
+            padding: "12px 0", fontSize: 14, fontWeight: 800,
+            color: "#FFFFFF", cursor: "pointer", fontFamily: "sans-serif",
+          }}>
+            Get Started →
+          </button>
         </div>
       </nav>
 
@@ -519,19 +569,11 @@ export default function App() {
           position: "absolute", inset: 0,
           backgroundImage: `url('${import.meta.env.BASE_URL}ChatGPT%20Image%20May%2021%2C%202026%2C%2009_10_03%20PM.png')`,
           backgroundSize: "cover",
-          backgroundPosition: "center right",
+          backgroundPosition: "center",
         }} />
 
-        {/* Gradient overlay: solid navy left → transparent right */}
-        <div style={{
-          position: "absolute", inset: 0,
-          background: `linear-gradient(to right,
-            rgba(18,40,64,0.93) 0%,
-            rgba(18,40,64,0.88) 35%,
-            rgba(27,58,92,0.55) 58%,
-            rgba(18,40,64,0.08) 80%,
-            transparent 100%)`,
-        }} />
+        {/* Gradient overlay — solid navy left on desktop, flat on mobile via CSS */}
+        <div className="hero-overlay" />
 
         {/* Subtle bottom vignette */}
         <div style={{
@@ -539,13 +581,8 @@ export default function App() {
           background: "linear-gradient(to top, rgba(18,40,64,0.5) 0%, transparent 100%)",
         }} />
 
-        {/* Content — left-aligned */}
-        <div style={{
-          position: "relative", zIndex: 1,
-          maxWidth: 1200, margin: "0 auto",
-          padding: "64px 32px 64px",
-          width: "100%",
-        }}>
+        {/* Content */}
+        <div className="hero-content">
           <div style={{ maxWidth: 580 }}>
             <h1 style={{
               fontSize: "clamp(2.6rem, 5vw, 4rem)", fontWeight: 800,
@@ -584,10 +621,8 @@ export default function App() {
               </button>
             </div>
 
-            {/* Divider */}
             <div style={{ width: 48, height: 1, background: "rgba(201,168,76,0.4)", margin: "44px 0 36px" }} />
 
-            {/* Stats row */}
             <div style={{ display: "flex", gap: 40, flexWrap: "wrap" }}>
               {[["6", "Site Styles"], ["48hr", "Avg Turnaround"], ["100%", "Custom Code"]].map(([num, label]) => (
                 <div key={label}>
@@ -601,7 +636,7 @@ export default function App() {
       </section>
 
       {/* ── HOW IT WORKS ────────────────────────────────────────────────── */}
-      <section style={{ padding: "80px 32px", background: tokens.white }}>
+      <section className="section-pad" style={{ background: tokens.white }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 52 }}>
             <p style={{ fontSize: 11, fontWeight: 700, color: tokens.accent, letterSpacing: "0.12em", textTransform: "uppercase", fontFamily: "sans-serif", marginBottom: 10 }}>
@@ -612,7 +647,7 @@ export default function App() {
             </h2>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+          <div className="grid-4">
             {[
               { n: "01", title: "Pick a Style", desc: "Browse real client sites and mockup styles. Choose the look that fits your brand." },
               { n: "02", title: "Create Account", desc: "Sign up, choose your pricing tier, and pay securely through Stripe." },
@@ -636,7 +671,7 @@ export default function App() {
       </section>
 
       {/* ── PORTFOLIO ────────────────────────────────────────────────────── */}
-      <section id="portfolio" style={{ padding: "80px 32px", background: "#F8F9FA" }}>
+      <section id="portfolio" className="section-pad" style={{ background: "#F8F9FA" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 52 }}>
             <p style={{ fontSize: 11, fontWeight: 700, color: tokens.accent, letterSpacing: "0.12em", textTransform: "uppercase", fontFamily: "sans-serif", marginBottom: 10 }}>
@@ -650,7 +685,7 @@ export default function App() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {portfolioStyles.map(style => (
               <PortfolioCard
                 key={style.id}
@@ -662,11 +697,9 @@ export default function App() {
           </div>
 
           {selectedStyle && (
-            <div style={{
+            <div className="flex-wrap-row" style={{
               marginTop: 32, padding: "20px 28px",
               background: tokens.primary, borderRadius: 14,
-              display: "flex", alignItems: "center", justifyContent: "space-between",
-              gap: 16,
             }}>
               <div>
                 <p style={{ margin: 0, color: "rgba(255,255,255,0.6)", fontSize: 12, fontFamily: "sans-serif" }}>Selected style:</p>
@@ -686,7 +719,7 @@ export default function App() {
       </section>
 
       {/* ── PRICING ──────────────────────────────────────────────────────── */}
-      <section id="pricing" style={{ padding: "80px 32px", background: tokens.white }}>
+      <section id="pricing" className="section-pad" style={{ background: tokens.white }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <p style={{ fontSize: 11, fontWeight: 700, color: tokens.accent, letterSpacing: "0.12em", textTransform: "uppercase", fontFamily: "sans-serif", marginBottom: 10 }}>
@@ -700,15 +733,14 @@ export default function App() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20, alignItems: "start" }}>
+          <div className="grid-pricing">
             {tiers.map(tier => <PricingCard key={tier.id} tier={tier} />)}
           </div>
 
-          <div style={{
+          <div className="flex-wrap-row" style={{
             marginTop: 32, padding: "24px 32px",
             background: tokens.accentLight,
             border: `1px solid ${tokens.border}`, borderRadius: 14,
-            display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20,
           }}>
             <div>
               <h3 style={{ margin: "0 0 6px", fontSize: 17, fontWeight: 700, color: tokens.primary }}>
@@ -730,8 +762,8 @@ export default function App() {
       </section>
 
       {/* ── ABOUT ────────────────────────────────────────────────────────── */}
-      <section id="about" style={{ padding: "80px 32px", background: "#F8F9FA" }}>
-        <div style={{ maxWidth: 960, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
+      <section id="about" className="section-pad" style={{ background: "#F8F9FA" }}>
+        <div className="grid-about" style={{ maxWidth: 960, margin: "0 auto" }}>
           <div>
             <p style={{ fontSize: 11, fontWeight: 700, color: tokens.accent, letterSpacing: "0.12em", textTransform: "uppercase", fontFamily: "sans-serif", marginBottom: 14 }}>
               ABOUT
@@ -745,7 +777,7 @@ export default function App() {
             <p style={{ fontSize: 14, color: tokens.mid, lineHeight: 1.7, marginBottom: 28, fontFamily: "sans-serif" }}>
               Every site is written in clean HTML, CSS, and JavaScript — no WordPress, no bloat, no subscription traps. Fast by default. Yours forever.
             </p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <div className="grid-trust">
               {[
                 ["Custom code", "No templates or page builders"],
                 ["Domain included", "I handle registration for you"],
@@ -773,7 +805,7 @@ export default function App() {
               </div>
             </div>
             <div style={{
-              position: "absolute", bottom: 24, right: -16,
+              position: "absolute", bottom: 24, right: 0,
               background: tokens.accent, borderRadius: 12,
               padding: "14px 20px", boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
             }}>
@@ -785,8 +817,7 @@ export default function App() {
       </section>
 
       {/* ── CONTACT CTA ──────────────────────────────────────────────────── */}
-      <section id="contact" style={{
-        padding: "80px 32px",
+      <section id="contact" className="section-pad" style={{
         background: `linear-gradient(160deg, ${tokens.primaryDark} 0%, ${tokens.primary} 100%)`,
         textAlign: "center",
       }}>
@@ -820,17 +851,19 @@ export default function App() {
       </section>
 
       {/* ── FOOTER ───────────────────────────────────────────────────────── */}
-      <footer style={{ background: tokens.dark, padding: "28px 32px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div style={{ width: 28, height: 28, borderRadius: 6, background: tokens.accent, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <span style={{ color: "#1a0a00", fontSize: 14, fontWeight: 900, fontFamily: "sans-serif" }}>J</span>
+      <footer style={{ background: tokens.dark, padding: "28px 32px" }}>
+        <div className="footer-row">
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <div style={{ width: 28, height: 28, borderRadius: 6, background: tokens.accent, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <span style={{ color: "#1a0a00", fontSize: 14, fontWeight: 900, fontFamily: "sans-serif" }}>J</span>
+            </div>
+            <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 12, fontFamily: "sans-serif" }}>© 2026 Web Studio by Justin</span>
           </div>
-          <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 12, fontFamily: "sans-serif" }}>© 2026 Web Studio by Justin</span>
-        </div>
-        <div style={{ display: "flex", gap: 20 }}>
-          {["Work", "Pricing", "About", "Contact"].map(l => (
-            <span key={l} style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", cursor: "pointer", fontFamily: "sans-serif" }}>{l}</span>
-          ))}
+          <div className="footer-nav">
+            {["Work", "Pricing", "About", "Contact"].map(l => (
+              <span key={l} style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", cursor: "pointer", fontFamily: "sans-serif" }}>{l}</span>
+            ))}
+          </div>
         </div>
       </footer>
     </div>
