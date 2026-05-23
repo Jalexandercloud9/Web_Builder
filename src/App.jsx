@@ -91,7 +91,6 @@ const portfolioStyles = [
     realSite: "Lionheart & Soul",
     tag: "Real Client",
     screenshot: "lionheartandsoulbymike.com_(iPhone 12 Pro).png",
-    previewOffset: 115,
   },
   {
     id: "storefront",
