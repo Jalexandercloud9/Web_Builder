@@ -68,7 +68,6 @@ const portfolioStyles = [
     realSite: "Toys for Talking",
     tag: "Real Client",
     screenshot: "toysfortalkingslp.com_(iPhone 12 Pro).png",
-    previewOffset: 185,
   },
   {
     id: "personal",
