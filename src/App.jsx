@@ -559,6 +559,7 @@ export default function App() {
       {/* ── HERO ────────────────────────────────────────────────────────── */}
       <section id="hero" style={{
         minHeight: "60vh",
+        paddingTop: 64,
         position: "relative",
         overflow: "hidden",
         display: "flex",
